@@ -1,0 +1,106 @@
+.chat {
+	flex-direction: column;
+	h2 {
+		font-family: Resolve-Light;
+		font-style: normal;
+		font-weight: 300;
+		font-size: 2.2rem;
+		line-height: 2.45rem;
+		letter-spacing: 0.02em;
+		text-align: center;
+		margin-top: 1rem;
+		color: #000000;
+	}
+	h1 {
+		font-family: Resolve-Regular;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		line-height: 44px;
+		color: #000000;
+		text-align: center;
+	}
+
+	.inner_chat {
+		height: 60vh;
+		width: 100%;
+		// background-color: rgb(255, 208, 208);
+		margin-top: 1.5rem;
+		margin-bottom: 2rem;
+        overflow: scroll;
+       
+		h3 {
+			font-weight: normal;
+			padding: 5px;
+			background-color: #ea6237;
+			color: white;
+		}
+		.inner_data {
+			display: flex;
+			padding: 10px;
+			&:nth-child(odd) {
+				background-color: #ffeae3;
+			}
+			&:nth-child(even) {
+				background-color: #ffd5c7;
+			}
+			.data {
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				a {
+					padding: 5px 10px;
+                    border-radius: 5px;
+					font-family: Resolve-Regular;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 14px;
+					line-height: 16px;
+					/* identical to box hight */
+					text-decoration: none;
+                    background-color: #FFC2AE;
+					color: #ff3d00;
+				}
+				h5 {
+					width: 100%;
+					font-family: Resolve-Regular;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 1.5rem;
+					line-height: 1.68rem;
+					color: #000000;
+				}
+				h6 {
+					width: 100%;
+					font-family: Resolve-Regular;
+					font-style: normal;
+					font-weight: normal;
+					font-size: 0.875rem;
+					line-height: 1rem;
+					color: #5c5c5c;
+				}
+			}
+		}
+	}
+}
+
+.spinner{
+ position: fixed;
+ top:50%;
+ right:45%;
+}
+
+.spin{
+	display:block !important;
+}
+
+.nospin{
+	display:none !important;
+}
+
+.wait{
+	text-align:center;
+	color: #6d1900;
+}

@@ -1,0 +1,61 @@
+.orangeText{
+    color: #EA6237;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.mainImg{
+    width: 43.03vw;
+}
+.desktopWrapper{
+ height:100vh;
+ width: 100%;
+overflow:hidden;
+    .desktopContainer{
+
+        h1{
+            font-size: 18px;
+            font-weight:500;
+        }
+
+        p{
+            font-size: 12px;
+            font-weight:500
+        }
+        position: relative;
+        font-family:"SF Pro Display"!important ;
+        .desktopHeroWrapper{
+              margin: 3rem 3rem 0 3rem;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+   
+        .text{
+            display: flex;
+            flex-direction: column;
+           justify-content: space-between;
+        }
+
+        .image{
+            position: relative;
+
+            .sideImg{
+                width: 18.989vw;
+                // display:none;
+                // position: absolute;
+                // top: 90%;
+                // left: 80%;
+               margin-right: 4rem;
+                float: right;
+                object-fit: contain;
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        
+    }
+}

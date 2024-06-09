@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: Poppins, san-serif;
+}
+
+@font-face {
+	font-family: "Resolve-Light";
+	src: url("../Assets/fonts/Resolve-Light.otf") format("otf");
+}
+@font-face {
+	font-family: "Resolve-Regular";
+	src: url("../Assets/fonts/Resolve-Regular.otf") format("otf");
+}
+
+.page {
+	height: 100vh;
+	display: flex;
+}
