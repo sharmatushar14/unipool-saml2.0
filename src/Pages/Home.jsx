@@ -6,7 +6,7 @@ import human2 from "../Assets/Images/human2.svg";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="page landing">
@@ -22,8 +22,8 @@ function Home() {
         <button
           onClick={() => {
             if (localStorage.getItem("schedule")) {
-                console.log("Hey");
-            }
+               navigate("/chat");
+            }else navigate("/login")
           }}
         >
           Get Splitting {">"}

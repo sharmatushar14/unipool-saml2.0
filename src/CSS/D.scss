@@ -16,12 +16,12 @@ overflow:hidden;
     .desktopContainer{
 
         h1{
-            font-size: 18px;
+            font-size: 28px;
             font-weight:500;
         }
 
         p{
-            font-size: 12px;
+            font-size: 18px;
             font-weight:500
         }
         position: relative;
@@ -42,6 +42,7 @@ overflow:hidden;
 
         .image{
             position: relative;
+            padding-right: 3px;
 
             .sideImg{
                 width: 18.989vw;
@@ -49,7 +50,8 @@ overflow:hidden;
                 // position: absolute;
                 // top: 90%;
                 // left: 80%;
-               margin-right: 4rem;
+                margin-right: 4rem;
+                margin-top: 45px;
                 float: right;
                 object-fit: contain;
                 max-width: 100%;
