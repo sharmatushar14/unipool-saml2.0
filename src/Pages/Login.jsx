@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import {
 	collection,
 	getDocs,
-	getFirestore,
 	query,
 	where,
 } from "firebase/firestore";
@@ -18,10 +17,10 @@ import {
 	GoogleAuthProvider,
 	signInWithEmailAndPassword,
 } from "firebase/auth";
+import { auth, db } from "../firebase";
 
 function Login() {
 	let errorCode;
-	const db = getFirestore();
 	const userRef = collection(db, "users");
 	const verify_user = async (user) => {
 		const uid = user.uid;
@@ -34,7 +33,6 @@ function Login() {
 		});
 	};
 	const navigate = useNavigate();
-	const auth = getAuth();
 	const provider = new GoogleAuthProvider();
 	const handleGoogleLogin = () => {
 		signInWithPopup(auth, provider)
