@@ -5,10 +5,10 @@ import Desk from "./Pages/DesktopLanding";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import From from "./Pages/From";
+import To from "./Pages/To";
 import ProtectedRoute from "./ProtectedRoute";
-import firebaseConfig from '../src/firebase'
 import NotProtectedRoute from "./NotProtectedRoute";
-import { initializeApp } from "firebase/app";
+
 
 
 function App() {
@@ -34,12 +34,14 @@ function App() {
           path="/signup"
           element={desktopView ? <Signup /> : <Desk />}
         />
-        <Route
+        <Route exact
           path="/"
           element={desktopView ? <Home /> : <Desk />}
         />
         <Route path="/from" element={<ProtectedRoute component={desktopView ? From : Desk} />} />
-        {/* <Route path="/to" element={<ProtectedRoute component={desktopView ? To : Desk} />} /> */}
+        <Route path="/to" element={<ProtectedRoute component={desktopView ? To : Desk} />} />
+        <Route path="/chat" component={Chat} />
+        <Route path="/chatroom/:name/:my_uid/:his_uid" component={Chatroom} />
       </Routes>
     </Router>
   );
