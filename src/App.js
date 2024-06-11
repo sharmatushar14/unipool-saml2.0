@@ -8,8 +8,8 @@ import From from "./Pages/From";
 import To from "./Pages/To";
 import ProtectedRoute from "./ProtectedRoute";
 import NotProtectedRoute from "./NotProtectedRoute";
-
-
+import Chat from "./Pages/Chat";
+import Chatroom from "./Pages/Chatroom";
 
 function App() {
 
@@ -40,8 +40,8 @@ function App() {
         />
         <Route path="/from" element={<ProtectedRoute component={desktopView ? From : Desk} />} />
         <Route path="/to" element={<ProtectedRoute component={desktopView ? To : Desk} />} />
-        <Route path="/chat" component={Chat} />
-        <Route path="/chatroom/:name/:my_uid/:his_uid" component={Chatroom} />
+        <Route path="/chat" element={<Chat/>} />
+        <Route path="/chatroom/:name/:my_uid/:his_uid" element={<Chatroom/>} />
       </Routes>
     </Router>
   );
