@@ -44,7 +44,7 @@ function To() {
 		localStorage.setItem("fromSchedule", JSON.stringify(final_schedule.fromData));
 		try {
 			const docRef = await setDoc(doc(db, "users", user_data.uid), final_schedule);
-			console.log("Document written", docRef);
+			// console.log("Document written", docRef);
 			navigate("/chat");
 		} catch (e) {
 			console.error("Error adding document: ", e);

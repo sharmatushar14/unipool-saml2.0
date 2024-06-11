@@ -58,7 +58,7 @@ function Login() {
 				const email = error.email;
 				// The AuthCredential type that was used.
 				const credential = GoogleAuthProvider.credentialFromError(error);
-				console.log(error);
+				// console.log(error);
 				// ...
 			});
 	};
@@ -74,7 +74,7 @@ function Login() {
 				// Signed in
 				setCreds({ email: "", password: "" });
 				const user = userCredential.user;
-				console.log(user);
+				// console.log(user);
 				localStorage.setItem("user", JSON.stringify(user));
 				navigate("/from");
 				window.location.reload();
@@ -82,7 +82,7 @@ function Login() {
 			.catch((error) => {
 			 errorCode = error.code;
 				const errorMessage = error.message;
-				console.log(error);
+				// console.log(error);
 			});
 	};
 	return (

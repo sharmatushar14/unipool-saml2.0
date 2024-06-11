@@ -54,7 +54,7 @@ function Chat() {
 				<div className='inner_chat'>
 					<h3>People close by your timing</h3>
 					<div className='inner_data_wrapper'>
-						{console.log(finalData)}
+						{/* {console.log(finalData)} */}
 						{finalData.length == 1 ? (
 							<>
 								<lottie-player

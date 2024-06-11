@@ -26,7 +26,7 @@ function From() {
 	const handleOpen = async (e) => {
 		const from = await e.target.parentElement.getAttribute("dataname");
 		setTimeout(() => {
-			console.log(from);
+			// console.log(from);
 			setFromValues({ ...fromValues, from: from })
 		},[300])
 		setOpen(true);

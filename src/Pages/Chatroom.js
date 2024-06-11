@@ -71,7 +71,7 @@ function Chatroom() {
 		//setting the input field to clean after message is sent
 		setInputMessage("");
         const docRef = await addDoc(collection(db, "Messages"), newMessage);
-		console.log("Document written with ID: ", docRef.id);
+		// console.log("Document written with ID: ", docRef.id);
 		//focus on the mesasge that has been sent, to maintain the scroll feature
         //Scroll to the bottom after sending a message
 		setTimeout(()=>{

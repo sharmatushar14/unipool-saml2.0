@@ -23,7 +23,7 @@ function Signup() {
 				const token = credential.accessToken;
 				const user = result.user;
 				localStorage.setItem("user", JSON.stringify(user));
-				console.log(user);
+				// console.log(user);
 				navigate("/from");
 				window.location.reload();
 			})

@@ -24,7 +24,7 @@ function Navbar() {
 			})
 			.catch((error) => {
 				// An error happened.
-				console.log("Error with Navbar", error);
+				// console.log("Error with Navbar", error);
 			});
 	}
 	const [anchorEl, setAnchorEl] = React.useState(null);
