@@ -10,6 +10,7 @@ const useAuth = () => {
         const response = await fetch('https://unipoolsamlapi.vercel.app/verify', {
           credentials: 'include', // Include cookies for authentication check
         });
+        console.log("Response:", response.status);
 
         if (!response.ok) {
           throw new Error('Failed to verify authentication');
