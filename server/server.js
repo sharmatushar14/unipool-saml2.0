@@ -21,7 +21,8 @@ router.use(session({
   cookie: {
     secure: true,
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24
+    maxAge: 1000 * 60 * 60 * 24, //1 Day
+    sameSite: 'None' // Necessary for cross-site cookie usage
   }
 }));
 
@@ -37,7 +38,7 @@ router.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
 
-    if (req.method == 'OPTIONS') {
+    if (req.method === 'OPTIONS') {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
         return res.status(200).json({});
     }
