@@ -10,6 +10,10 @@ import 'dotenv/config';
 
 const router = express();
 
+//Allowing Passport to deserialize the user correctly based on the session.
+router.use(passport.initialize());
+router.use(passport.session());
+
 //Handling the server with http module
 const httpServer = http.createServer(router);
 
@@ -22,13 +26,11 @@ router.use(session({
     secure: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24, //1 Day
-    sameSite: 'None' // Necessary for cross-site cookie usage
+    sameSite: 'Strict' // Necessary for cross-site cookie usage
   }
 }));
 
 //Passport Initialization
-router.use(passport.initialize());
-router.use(passport.session());
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
