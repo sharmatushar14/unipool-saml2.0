@@ -12,7 +12,7 @@ const router = express();
 
 //Allowing Passport to deserialize the user correctly based on the session.
 router.use(passport.initialize());
-router.use(passport.session());
+
 
 //Handling the server with http module
 const httpServer = http.createServer(router);
@@ -30,7 +30,9 @@ router.use(session({
   }
 }));
 
-//Passport Initialization
+//Passport Authentication Session Initialization
+router.use(passport.session());
+
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
