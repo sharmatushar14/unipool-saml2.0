@@ -17,6 +17,8 @@ passport.deserializeUser((currUser, cb) => {
     cb(null, currUser);
 });
 
+
+//SAML Strategy Initialization
 passport.use(
     new Strategy(
         {

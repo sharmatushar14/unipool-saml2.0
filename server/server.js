@@ -14,27 +14,22 @@ const router = express();
 router.use(passport.initialize());
 
 
-//Handling the server with http module
-const httpServer = http.createServer(router);
-
 //Parsing the body of the request and implementing Passport middleware
-router.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true,
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24, //1 Day
-    sameSite: 'Strict' // Necessary for cross-site cookie usage
-  }
+router.use(session(config.session));
+router.use(passport.initialize());
+router.use(passport.session({
+    //Session to be stored in the memory by default
+    secret: config.session.secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: true, // Secure cookies in production
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 1 day
+    }
 }));
-
-//Passport Authentication Session Initialization
-router.use(passport.session());
-
-router.use(express.urlencoded({ extended: false }));
-router.use(express.json());
+router.use(express.urlencoded({ extended: false })); 
+router.use(express.json()); 
 
 //Rules for defining the APIs
 router.use((req, res, next) => {
@@ -51,7 +46,7 @@ router.use((req, res, next) => {
 });
 
 const corsOptions = {
-    origin: ["https://unipoolsamlclient.vercel.app"], // Allow requests from localhost:3000 or production frontend
+    origin: ["https://unipoolsamlclient.vercel.app/"], // Allow requests from localhost:3000 or production frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
