@@ -32,7 +32,7 @@ function From() {
     return (
       <div className="not-authenticated">
         <h1>You are not authenticated. Please login to proceed.</h1>
-        <button onClick={() => window.location.replace('http://localhost:8000/login')}>Login with Okta</button>
+        <button onClick={() => window.location.replace('https://unipoolsamlapi.vercel.app/login')}>Login with Okta</button>
       </div>
     );
   }

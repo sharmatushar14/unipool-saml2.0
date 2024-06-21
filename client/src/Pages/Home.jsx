@@ -9,7 +9,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleLoginRedirect = () => {
-    window.location.href = 'http://localhost:8000/login'; // Redirects to the Okta login route
+    window.location.href = 'https://unipoolsamlapi.vercel.app/login'; // Redirects to the Okta login route
   };
 
   return (

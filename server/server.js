@@ -110,7 +110,7 @@ router.post('/logout', (req, res) => {
                 return res.status(500).json({ message: 'Session destruction failed' });
             }
             res.clearCookie('connect.sid'); // Clear session cookie
-            res.redirect('http://localhost:3000'); // Redirect to frontend
+            res.redirect(process.env.FRONTEND_URL); // Redirect to frontend
         });
     });
 });
@@ -123,7 +123,7 @@ router.post('/logout/callback', (req, res) => {
             return next(err);
         }
         req.session.destroy(() => {
-            res.redirect('http://localhost:3000');
+            res.redirect(process.env.FRONTEND_URL);
         });
     });
 });
