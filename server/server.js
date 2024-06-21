@@ -69,14 +69,18 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
 router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session); 
-    console.log(session.user);
+    if (!req.isAuthenticated()) {
+        logging.info('User not authenticated');
 
-    if (!req.sessionID) {
-        return res.status(401).json({ message: 'Session not found' });
+        return res.status(401).json({
+            message: 'Unauthorized'
+        });
+    } else {
+        logging.info('User authenticated');
+        logging.info(req.user);
+
+        return res.status(200).json({ user: req.user });
     }
-
-    console.log('Session found:', session);
-    return res.status(200).json({ user: session.user });
 });
 
 
