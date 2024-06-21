@@ -69,6 +69,7 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
 router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session); 
+    console.log(session.user);
 
     if (!req.sessionID) {
         return res.status(401).json({ message: 'Session not found' });
