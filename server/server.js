@@ -26,7 +26,8 @@ router.use(passport.session({
     cookie: {
         secure: true, // Secure cookies in production
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+        sameSite: 'None'
     }
 }));
 router.use(express.urlencoded({ extended: false })); 
