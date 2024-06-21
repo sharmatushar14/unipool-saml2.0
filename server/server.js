@@ -21,6 +21,7 @@ router.use(passport.initialize());
 router.use(passport.session({
     //Session to be stored in the memory by default
     secret: config.session.secret,
+    secure: true,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -69,7 +70,9 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
 //Will be using these route to verify at frontend to get the username as nameID from OKTA IDP
 router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
-    console.log('Session:', req.session); 
+    console.log('Session:', req.session);
+    console.log('Authenticated:', req.isAuthenticated());
+    console.log('User:', req.user);
     if (!req.isAuthenticated()) {
         console.log('User not authenticated');
 
