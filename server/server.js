@@ -47,7 +47,7 @@ router.use((req, res, next) => {
 });
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL, // Allow requests from localhost:3000 or production frontend
+    origin: "https://unipoolsamlclient.vercel.app", // Allow requests from localhost:3000 or production frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
