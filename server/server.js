@@ -18,19 +18,21 @@ const httpServer = http.createServer(router);
 //Parsing the body of the request and implementing Passport middleware
 router.use(session(config.session));
 router.use(passport.initialize());
-router.use(passport.session({
-    //Session to be stored in the memory by default
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: true, // Secure cookies in production
-        httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
-    }
+
+router.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24
+  }
 }));
-router.use(express.urlencoded({ extended: false })); 
-router.use(express.json()); 
+router.use(passport.initialize());
+router.use(passport.session());
+router.use(express.urlencoded({ extended: false }));
+router.use(express.json());
 
 //Rules for defining the APIs
 router.use((req, res, next) => {
