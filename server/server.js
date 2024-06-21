@@ -17,7 +17,7 @@ const httpServer = http.createServer(router);
 router.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     secure: true,
     httpOnly: true,
@@ -67,6 +67,9 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
 
 //Will be using these route to verify at frontend to get the username as nameID from OKTA IDP
 router.get('/verify', (req, res, next) => {
+    console.log('Session ID:', req.sessionID);
+    console.log('Session:', req.session); 
+
     if (!req.isAuthenticated()) {
         console.log('User not authenticated');
 
