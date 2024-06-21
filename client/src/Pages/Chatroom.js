@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 import "../CSS/Chatroom.scss";
 import arrow from "../Assets/Images/Arrow.svg";
 import SendIcon from "@mui/icons-material/Send";
@@ -14,13 +13,17 @@ import {
 	onSnapshot,
 	orderBy,
 } from "firebase/firestore";
+import useAuth from "../customhook/useAuth";
+
 function Chatroom() {
 	let { name, my_uid, his_uid } = useParams();
 	const [inputMessage, setInputMessage] = React.useState("");
 	const [sampleData, setSampleData] = React.useState([]);
 	const [userSchedule, setUserSchedule] = React.useState({});
+ 	//Okta Authentication Process
+	 const { isAuthenticated, userData } = useAuth(); //Custom Hook
 
-	//fetch messages
+	//fetch messagesf
 	useEffect(() => {
 		const getData = async () => {
 			//referncing the firebase collection
@@ -31,12 +34,13 @@ function Chatroom() {
 				where("uids", "array-contains", my_uid), //Either I have sent the message or the message is meant for me
 				orderBy("time")
 			);
-			//clearing all prev msgs when new msgs are fetched
+			//clearing all prev msgs when new msgs are fetched--->debugged
 			setSampleData([]);
 
             //Sender---->Reciever Format
 			const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const messages = [];
+				//Now filtering the messages based upon his uid
 				querySnapshot.forEach((doc) => {
 					const data = doc.data();
                     if (data.uids.includes(his_uid)) {
@@ -62,7 +66,7 @@ function Chatroom() {
 		e.preventDefault();
 		// message schema 
 		let newMessage = {
-			uids: [my_uid, his_uid],
+			uids: [my_uid, his_uid], //[sender, reciever]
 			sender_uid: my_uid,
 			receiver_uid: his_uid,
 			message: inputMessage,
@@ -87,10 +91,20 @@ function Chatroom() {
         }	
 	},[])
 
+      // Conditionally render content based on authentication state
+    if(!isAuthenticated) {
+    return (
+		<div class="not-authenticated">
+        <h1>You are not authenticated. Please login to proceed.</h1>
+        <button onClick={() => window.location.replace('http://localhost:8000/login')}>Login with Okta</button>
+        </div>
+    );
+  }
+
+
 	return (
 		<>
 			<div className='pages chatroom'>
-				<Navbar></Navbar>
 				<h1 className='heading'>CHATROOM</h1>
 				<div className='outer_chat'>
 					<div className='place'>
@@ -108,6 +122,7 @@ function Chatroom() {
 						<div className='messages_group'>
 							{sampleData.map((data) => {
 								if (data.sender_uid == my_uid) {
+									//Messages sent by me
 									return (
 										<div className='message_wrapper incoming_wrapper'>
 											<div className='message incoming_message'>

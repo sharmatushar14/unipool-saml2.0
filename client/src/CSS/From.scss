@@ -83,3 +83,25 @@
 		line-height: 1.6rem;
 	}
 }
+
+.left-corner-button {
+    position: absolute; /* Position it absolutely */
+    top: 20px; /* Adjust the top positioning as needed */
+    left: 0px; /* Initially place it in the left corner */
+    transform: translateX(calc(100vw - 100% - 20px)); /* Move it to the right */
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for the button */
+    border-radius: 20px; /* Rounded corners */
+    font-family: Poppins, sans-serif; /* Font family */
+    font-weight: 500; /* Font weight */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.2); /* Box shadow */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.left-corner-button:hover {
+    background-color: #333333; /* Darker shade on hover */
+}

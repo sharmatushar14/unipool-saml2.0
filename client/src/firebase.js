@@ -8,7 +8,7 @@ import { getFirestore } from "firebase/firestore";
     storageBucket: process.env.REACT_APP_FIREBASE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_SENDERID,
     appId: process.env.REACT_APP_FIREBASE_APPID,
-    measurementId: process.env.REACT_APP_FIREBASE_MID,
+    // measurementId: process.env.REACT_APP_FIREBASE_MID,
   };
 
   const app = initializeApp(firebaseConfig);

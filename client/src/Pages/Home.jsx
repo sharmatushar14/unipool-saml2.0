@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
 
+  const handleLoginRedirect = () => {
+    window.location.href = 'http://localhost:8000/login'; // Redirects to the Okta login route
+  };
+
   return (
     <div className="page landing">
       <h1>Unipool</h1>
@@ -20,11 +24,7 @@ function Home() {
       <div className="lowerLanding">
         <img src={human1} className="humansvg" alt="humans" />
         <button
-          onClick={() => {
-            if (localStorage.getItem("schedule")) {
-               navigate("/chat");
-            }else navigate("/login")
-          }}
+          onClick={handleLoginRedirect}
         >
           Get Splitting {">"}
         </button>
