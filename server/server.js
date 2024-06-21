@@ -9,6 +9,7 @@ import { savedUsers } from './config/passport.js';
 import 'dotenv/config';
 
 const router = express();
+const httpServer = http.createServer(router);
 
 //Allowing Passport to deserialize the user correctly based on the session.
 router.use(passport.initialize());
