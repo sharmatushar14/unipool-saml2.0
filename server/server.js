@@ -22,7 +22,7 @@ router.use(session({
     secure: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24, //1 Day
-    sameSite: 'None' // Necessary for cross-site cookie usage
+    sameSite: 'none' // Necessary for cross-site cookie usage
   }
 }));
 
