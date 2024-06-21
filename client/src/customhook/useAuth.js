@@ -7,7 +7,7 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        const response = await fetch('/verify', {
+        const response = await fetch('https://unipoolsamlapi.vercel.app/verify', {
           credentials: 'include', // Include cookies for authentication check
         });
 
