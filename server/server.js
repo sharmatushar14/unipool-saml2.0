@@ -10,25 +10,22 @@ import 'dotenv/config';
 
 const router = express();
 
-
 //Handling the server with http module
 const httpServer = http.createServer(router);
 
-
 //Parsing the body of the request and implementing Passport middleware
-router.use(session(config.session));
-router.use(passport.initialize());
-
 router.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     secure: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24
   }
 }));
+
+//Passport Initialization
 router.use(passport.initialize());
 router.use(passport.session());
 router.use(express.urlencoded({ extended: false }));
