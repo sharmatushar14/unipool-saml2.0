@@ -22,7 +22,7 @@ router.use(session({
     secure: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24, //1 Day
-    sameSite: 'none' // Necessary for cross-site cookie usage
+    sameSite: 'None' // Necessary for cross-site cookie usage
   }
 }));
 
@@ -70,19 +70,15 @@ router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session); 
 
-    if (!req.isAuthenticated()) {
-        console.log('User not authenticated');
-
-        return res.status(401).json({
-            message: 'Unauthorized'
-        });
-    } else {
-        console.log('User authenticated');
-        console.log(req.user);
-
-        return res.status(200).json({ user: req.user });
+    if (!req.sessionID) {
+        return res.status(401).json({ message: 'Session not found' });
     }
+
+    console.log('Session found:', session);
+    return res.status(200).json({ user: session.user });
 });
+
+
 
 //Health Check Route
 router.get('/healthcheck', (req, res, next) => {
