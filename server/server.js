@@ -15,7 +15,6 @@ const httpServer = http.createServer(router);
 //Allowing Passport to deserialize the user correctly based on the session.
 
 //Parsing the body of the request and implementing Passport middleware
-router.use(session(config.session));
 router.use(passport.initialize());
 router.use(passport.session({
     //Session to be stored in the memory by default
@@ -31,6 +30,7 @@ router.use(passport.session({
         domain: '.vercel.app'
       }
 }));
+router.use(session(config.session));
 router.use(express.urlencoded({ extended: false })); 
 router.use(express.json()); 
 
