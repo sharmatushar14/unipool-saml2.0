@@ -70,15 +70,14 @@ router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session); 
     if (!req.isAuthenticated()) {
-        logging.info('User not authenticated');
+        console.log('User not authenticated');
 
         return res.status(401).json({
             message: 'Unauthorized'
         });
     } else {
-        logging.info('User authenticated');
-        logging.info(req.user);
-
+        console.log('User authenticated');
+        console.log(req.user);
         return res.status(200).json({ user: req.user });
     }
 });
