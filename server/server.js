@@ -47,7 +47,7 @@ router.use((req, res, next) => {
 });
 
 const corsOptions = {
-    origin: ["https://unipoolsamlclient.vercel.app/"], // Allow requests from localhost:3000 or production frontend
+    origin: ["https://unipoolsamlclient.vercel.app"], // Allow requests from localhost:3000 or production frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
@@ -57,12 +57,12 @@ router.use(cors(corsOptions));
 
 //Passport and SAML Routes for defining login and IDP callback, defined URLS on OKTA developer console
 router.get('/login', passport.authenticate('saml', config.saml.options), (req, res, next) => {
-    return res.redirect(process.env.FRONTEND_URL);
+    return res.redirect("https://unipoolsamlclient.vercel.app");
 });
 
 //After successful IDP Authentication, callback redirecting to frontend /from route of UniPool Application
 router.post('/login/sso/callback', passport.authenticate('saml', config.saml.options), (req, res, next) => {
-    return res.redirect(process.env.FRONTEND_URL_HOME); //Current, as per Local ENV
+    return res.redirect("https://unipoolsamlclient.vercel.app/from"); //Current, as per Local ENV
 });
 
 //Will be using these route to verify at frontend to get the username as nameID from OKTA IDP
