@@ -9,9 +9,9 @@ import { savedUsers } from './config/passport.js';
 import 'dotenv/config';
 
 const router = express();
-router.set('trust proxy', 1);
+// router.set('trust proxy', 1);
 const httpServer = http.createServer(router);
-
+router.use(session(config.session));
 //Allowing Passport to deserialize the user correctly based on the session.
 
 //Parsing the body of the request and implementing Passport middleware
@@ -23,14 +23,14 @@ router.use(passport.session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true,
+        secure: 'auto',
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
         sameSite: 'None',
         domain: '.vercel.app'
       }
 }));
-router.use(session(config.session));
+
 router.use(express.urlencoded({ extended: false })); 
 router.use(express.json()); 
 
