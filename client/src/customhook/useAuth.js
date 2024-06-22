@@ -15,7 +15,6 @@ const useAuth = () => {
       try {
         const response = await api.get('https://unipoolsamlapi.vercel.app/verify');
         const data = await response.json();
-        console.log("Response: Here", data);
 
         if (!response.ok) {
           throw new Error('Failed to verify authentication');

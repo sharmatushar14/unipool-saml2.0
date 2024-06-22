@@ -37,8 +37,6 @@ function From() {
     );
   }
 
-  console.log(userData);
-
   const handleOpen = (dataname) => {
     setFromValues((prevValues) => ({ ...prevValues, from: dataname }));
     setOpen(true);
@@ -46,9 +44,7 @@ function From() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("fromValues before setting to localStorage: ", fromValues);
     localStorage.setItem("fromSchedule", JSON.stringify(fromValues));
-    console.log("fromSchedule in localStorage: ", localStorage.getItem("fromSchedule"));
     navigate("/to");
   };
 
@@ -73,7 +69,6 @@ function From() {
     }
   };
 
-  console.log(userData.nameID);
 
   return (
     <>

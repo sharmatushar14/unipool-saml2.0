@@ -8,15 +8,12 @@ const savedUsers = [];
 
 // Serializing and Deserializing with passport
 passport.serializeUser((currUser, cb) => {
-    console.log(currUser, 'Serialize User');
     cb(null, currUser);
 });
 
 passport.deserializeUser((currUser, cb) => {
-    console.log(currUser, 'Deserialize User');
     cb(null, currUser);
 });
-
 
 //SAML Strategy Initialization
 passport.use(

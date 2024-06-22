@@ -52,7 +52,6 @@ function To() {
   const handleSubmit = async (e) => {
 	e.preventDefault();
 	const final_schedule = { ...from_data, ...toValues, ...userData, fromData: from_data };
-	console.log(final_schedule);
 	localStorage.setItem("schedule", JSON.stringify(final_schedule));
 	localStorage.setItem("fromSchedule", JSON.stringify(final_schedule.fromData));
   
@@ -64,7 +63,6 @@ function To() {
 		await updateDoc(doc.ref, {
 		  final_schedule
 		});
-		console.log(`Document updated with ID: ${doc.id}`);
 		navigate("/chat");
 	  });
 	} else {
@@ -74,7 +72,6 @@ function To() {
 		  uid: userData.nameID,
 		  final_schedule
 		});
-		console.log(`New document added with ID: ${docRef.id}`);
 		navigate("/chat");
 	  } catch (e) {
 		console.error("Error adding document: ", e);

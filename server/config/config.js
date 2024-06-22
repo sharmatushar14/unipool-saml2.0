@@ -2,7 +2,6 @@ import 'dotenv/config';
 const config = {
     // Creating an object for SAML Configuration with SSO OKta Dev 
     // Referred from Okta Dev Docs
-    //This file is for referring configurations
     saml: {
         cert: process.env.cert,
         entryPoint: process.env.entryPoint,

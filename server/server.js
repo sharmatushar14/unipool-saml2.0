@@ -68,19 +68,12 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
 
 //Route to verify at frontend to get the username as nameID from OKTA IDP
 router.get('/verify', (req, res, next) => {
-    console.log('Session ID:', req.sessionID);
-    console.log('Session:', req.session);
-    console.log('Authenticated:', req.isAuthenticated());
-    console.log('User:', req.user);
     if (!req.isAuthenticated()) {
-        console.log('User not authenticated');
 
         return res.status(401).json({
             message: 'Unauthorized'
         });
     } else {
-        console.log('User authenticated');
-        console.log(req.user);
         return res.status(200).json({ user: req.user });
     }
 });
