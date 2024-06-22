@@ -18,7 +18,7 @@ router.use(passport.initialize());
 router.use(session(config.session));
 router.use(passport.session({
     secret: config.session.secret,
-    secure: true, //For Production
+    secure: true, //Production ENV
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -34,7 +34,7 @@ router.use(express.urlencoded({ extended: false }));
 router.use(express.json()); 
 
 const corsOptions = {
-    origin: "https://unipoolsamlclient.vercel.app", // Allow requests from any origin
+    origin: "https://unipoolsamlclient.vercel.app", 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
@@ -58,12 +58,12 @@ router.use((req, res, next) => {
 
 //Passport and SAML Routes for defining login and IDP callback, defined URLS on OKTA developer console
 router.get('/login', passport.authenticate('saml', config.saml.options), (req, res, next) => {
-    return res.redirect("https://unipoolsamlclient.vercel.app");
+    return res.redirect(process.env.FRONTEND_URL);
 });
 
 //After successful IDP Authentication, callback redirecting to frontend /from route of UniPool Application
 router.post('/login/sso/callback', passport.authenticate('saml', config.saml.options), (req, res, next) => {
-    return res.redirect("https://unipoolsamlclient.vercel.app/from"); //Current, as per Local ENV
+    return res.redirect(process.env.FRONTEND_URL_HOME); 
 });
 
 //Route to verify at frontend to get the username as nameID from OKTA IDP
