@@ -34,6 +34,15 @@ router.use(passport.session({
 router.use(express.urlencoded({ extended: false })); 
 router.use(express.json()); 
 
+const corsOptions = {
+    origin: true, // Allow requests from localhost:3000 or production frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+    credentials: true // Allow credentials (cookies, authorization headers, etc.)
+};
+
+router.use(cors(corsOptions));
+
 //Rules for defining the APIs
 router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin',  req.header('origin'));
@@ -47,15 +56,6 @@ router.use((req, res, next) => {
 
     next();
 });
-
-const corsOptions = {
-    origin: ["https://unipoolsamlclient.vercel.app", "http://localhost:3000"], // Allow requests from localhost:3000 or production frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
-    credentials: true // Allow credentials (cookies, authorization headers, etc.)
-};
-
-router.use(cors(corsOptions));
 
 //Passport and SAML Routes for defining login and IDP callback, defined URLS on OKTA developer console
 router.get('/login', passport.authenticate('saml', config.saml.options), (req, res, next) => {
