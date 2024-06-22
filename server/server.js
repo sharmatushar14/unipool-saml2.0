@@ -9,24 +9,23 @@ import { savedUsers } from './config/passport.js';
 import 'dotenv/config';
 
 const router = express();
-// router.set('trust proxy', 1);
 const httpServer = http.createServer(router);
-router.use(session(config.session));
-//Allowing Passport to deserialize the user correctly based on the session.
 
 //Parsing the body of the request and implementing Passport middleware
 router.use(passport.initialize());
+
+//Configuring the session
+router.use(session(config.session));
 router.use(passport.session({
-    //Session to be stored in the memory by default
     secret: config.session.secret,
-    secure: true, //Production
+    secure: true, //For Production
     resave: false,
     saveUninitialized: false,
     cookie: {
         secure: 'auto',
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
-        sameSite: 'None',
+        sameSite: 'None', //Scenarios for SSO across different redirects.
         domain: '.vercel.app'
       }
 }));
@@ -67,7 +66,7 @@ router.post('/login/sso/callback', passport.authenticate('saml', config.saml.opt
     return res.redirect("https://unipoolsamlclient.vercel.app/from"); //Current, as per Local ENV
 });
 
-//Will be using these route to verify at frontend to get the username as nameID from OKTA IDP
+//Route to verify at frontend to get the username as nameID from OKTA IDP
 router.get('/verify', (req, res, next) => {
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session);
@@ -86,18 +85,14 @@ router.get('/verify', (req, res, next) => {
     }
 });
 
-
-
 //Health Check Route
 router.get('/healthcheck', (req, res, next) => {
     return res.status(200).json({ messgae: 'Server is running!' });
 });
 
-
 //Defining logout route
-//Accessed the logoutURL && logoutCallbackUrl by providing unique signature certificate of OKTA IDP
 router.post('/logout', (req, res) => {
-    //Getting the nameID from the frontend, indicating to the current user session and details
+    //Accessed the logoutURL && logoutCallbackUrl by providing unique signature certificate of OKTA IDP
     const { nameID } = req.body;
     req.logout((err) => {
         if (err) {
@@ -116,14 +111,13 @@ router.post('/logout', (req, res) => {
                 console.error('Error destroying session:', err);
                 return res.status(500).json({ message: 'Session destruction failed' });
             }
-            res.clearCookie('connect.sid'); // Clear session cookie
-            res.redirect(process.env.FRONTEND_URL); // Redirect to frontend
+            res.clearCookie('connect.sid'); 
+            res.redirect(process.env.FRONTEND_URL); 
         });
     });
 });
     
 //Logout callback route for OKTA IDP Dev Console
-//Returning back to frontend, as per local environment
 router.post('/logout/callback', (req, res) => {
     req.logout((err) => {
         if (err) {

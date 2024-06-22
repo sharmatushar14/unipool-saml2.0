@@ -39,7 +39,6 @@ function Chat() {
 			});
 			
 			setFinalData(results);
-			console.log(results);
 		  };
 			getData().then(() => {
 			  setSpindis("nospin");
@@ -74,14 +73,12 @@ function Chat() {
 				<div className='inner_chat'>
 					<h3>People close by your timing</h3>
 					<div className='inner_data_wrapper'>
-						{/* {console.log(finalData)} */}
 						{finalData.length == 1 ? (
 							<>
 								<lottie-player
 									src='https://assets10.lottiefiles.com/packages/lf20_tmbw43jx.json'
 									background='transparent'
 									speed='1'
-									// style='width: 300px; height: 300px;'
 									style={{
 										width: "100%",
 										height: "300px",

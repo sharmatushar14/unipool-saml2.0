@@ -34,7 +34,7 @@ function To() {
     return (
       <div className="not-authenticated">
         <h1>You are not authenticated. Please login to proceed.</h1>
-        <button onClick={() => window.location.replace('https://unipoolsamlapi.vercel.app/login')}>Login with Okta</button>
+        <button onClick={() => window.location.replace(process.env.REACT_APP_BACKENDLOGIN)}>Login with Okta</button>
       </div>
     );
   }
@@ -96,7 +96,7 @@ function To() {
       });
 
       // Redirect the user to the homepage after logout
-      window.location.href = 'http://localhost:3000';
+      window.location.href = process.env.REACT_APP_FRONTENDROUTE;
     } catch (error) {
       console.error('Error logging out:', error);
     }

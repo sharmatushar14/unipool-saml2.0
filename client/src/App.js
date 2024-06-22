@@ -6,9 +6,7 @@ import To from './Pages/To';
 import Chat from './Pages/Chat';
 import Chatroom from './Pages/Chatroom';
 
-
 function App() {
-
   return (
     <Router>
       <Routes>

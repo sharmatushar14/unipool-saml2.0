@@ -9,7 +9,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleLoginRedirect = () => {
-    window.location.href = 'https://unipoolsamlapi.vercel.app/login'; // Redirects to the Okta login route
+    window.location.href = process.env.REACT_APP_BACKENDLOGIN; // Redirects to the Okta login route
   };
 
   return (
@@ -26,7 +26,7 @@ function Home() {
         <button
           onClick={handleLoginRedirect}
         >
-          Get Splitting {">"}
+          Login with Okta Account {">"}
         </button>
         <img src={human2} className="humansvg" alt="humans" />
       </div>

@@ -23,10 +23,9 @@ function Chatroom() {
  	//Okta Authentication Process
 	 const { isAuthenticated, userData } = useAuth(); //Custom Hook
 
-	//fetch messagesf
+	//fetch messages
 	useEffect(() => {
 		const getData = async () => {
-			//referncing the firebase collection
 			const userRef = collection(db, "Messages");
 			
 			const q = query(
@@ -72,11 +71,8 @@ function Chatroom() {
 			message: inputMessage,
 			time: new Date(),
 		};
-		//setting the input field to clean after message is sent
 		setInputMessage("");
         const docRef = await addDoc(collection(db, "Messages"), newMessage);
-		// console.log("Document written with ID: ", docRef.id);
-		//focus on the mesasge that has been sent, to maintain the scroll feature
         //Scroll to the bottom after sending a message
 		setTimeout(()=>{
             const element =  document.getElementById("focus");
@@ -118,7 +114,6 @@ function Chatroom() {
 					</div>
 					<div className='inner_chat'>
 						<h2>{name}</h2>
-						{/* <div> */}
 						<div className='messages_group'>
 							{sampleData.map((data) => {
 								if (data.sender_uid == my_uid) {
@@ -142,7 +137,6 @@ function Chatroom() {
 							})}
 							<div id='focus'></div>
 						</div>
-						{/* </div> */}
 						<div className='send_message'>
 							<form onSubmit={handleSubmit}>
 								<input
