@@ -50,7 +50,7 @@ function Chat() {
     return (
 		<div class="not-authenticated">
         <h1>You are not authenticated. Please login to proceed.</h1>
-        <button onClick={() => window.location.replace('https://unipoolsamlapi.vercel.app/login')}>Login with Okta</button>
+        <button onClick={() => window.location.replace(process.env.REACT_APP_BACKENDLOGIN)}>Login with Okta</button>
         </div>
     );
   }

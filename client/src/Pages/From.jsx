@@ -67,7 +67,7 @@ function From() {
       });
 
       // Redirect to the homepage after logout
-      window.location.href = process.env.REACT_APP_FRONTENDROUTE;
+      window.location.href = process.env.REACT_APP_FRONTENDHOME;
     } catch (error) {
       console.error('Error logging out:', error);
     }
