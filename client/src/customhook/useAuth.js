@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://unipoolsamlapi.app.vercel',
+  baseURL: 'https://unipoolsamlapi.vercel.app',
   withCredentials: true
 })
 
