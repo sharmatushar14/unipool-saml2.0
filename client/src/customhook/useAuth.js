@@ -1,4 +1,10 @@
 import { useState, useEffect } from "react";
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: 'https://unipoolsamlapi.app.vercel',
+  withCredentials: true
+})
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -7,9 +13,7 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
-        const response = await fetch('https://unipoolsamlapi.vercel.app/verify', {
-          credentials: 'include', // Include cookies for authentication check
-        });
+        const response = await api.get('https://unipoolsamlapi.vercel.app/verify');
         const data = await response.json();
         console.log("Response: Here", data);
 
