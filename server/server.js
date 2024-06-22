@@ -35,7 +35,7 @@ router.use(express.urlencoded({ extended: false }));
 router.use(express.json()); 
 
 const corsOptions = {
-    origin: "*", // Allow requests from any origin
+    origin: "https://unipoolsamlclient.vercel.app", // Allow requests from any origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
